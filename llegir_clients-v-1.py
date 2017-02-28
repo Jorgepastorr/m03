@@ -58,9 +58,9 @@ while sortir == False:
 ###########################################
 ############ GUARREANDO BUcle dentro de opion 2 ############
 # Llegim la taulas
-	elif opcio == 1: 
-		while sortir == False:	
-	
+	elif opcio == 1: 			###################################################
+		while sortir == False:		########### Al salir de veste bucle  sale del script  #####
+						######### quiero que salga al bucle anterior ###########
 			os.system('clear')
 			print "Qué tabla quieres ver"
 			print "1.-Pedidos"
