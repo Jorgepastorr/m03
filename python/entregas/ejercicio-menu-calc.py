@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+import os
+os.system('clear')
 
-print Menu de una calculadora:
-num = raw_input(" Qué desea hacer el amo? ")	
-print S - Salir
-print 1 - Sumar
-print 2 - Restar
-print 3 - Multiplicar
-print 4 - Dividir
+print "Menu de una calculadora:"	
+print "S - Salir"
+print "1 - Sumar"
+print "2 - Restar"
+print "3 - Multiplicar"
+print "4 - Dividir"
+num = raw_input(" Qué desea hacer el amo? ")
+print
 
-#>Error “Esa opción no existe”
 
 if ( num >= "1" and num <= "4" ) or num == "S" or num == "s":
 	print "opciones correctas"
