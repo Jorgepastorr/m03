@@ -14,8 +14,9 @@ num2 = raw_input("Segundo número: ")
 
 if num1 > num2:
 	print num1+" es mayor que "+num2
-elif num1 == num2:
-	print num1+" y "+num2+" son iguales"
 else:
-	print num2+" es mayor que "+num1
+	if num1 == num2:
+		print num1+" y "+num2+" son iguales"
+	else:
+		print num2+" es mayor que "+num1
 	  
