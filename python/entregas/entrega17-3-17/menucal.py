@@ -23,47 +23,27 @@ while salir == False:
 		if num == "1":
 			print "Sumar"
 			print
-			num1 = input("introduce el primer numero: ")
-			num2 = input("introduce el segundo numero: ")
-			res = num1 + num2
-			print "resultado de",num1,"+",num2,"es:",res
-			print
 			tecla = raw_input("Pulse enter para continuar")
 			
 		else:
 			if num == "2":
 				print "Restar"
 				print
-				num1 = input("introduce el primer numero: ")
-				num2 = input("introduce el segundo numero: ")
-				res = num1 - num2
-				print "resultado de",num1,"-",num2,"es:",res
 				tecla = raw_input("Pulse enter para continuar")
 				
 			else:
 				if num == "3":
 					print "Miltiplicar"
 					print
-					num1 = input("introduce el primer numero: ")
-					num2 = input("introduce el segundo numero: ")
-					res = num1 * num2
-					print "resultado de",num1,"*",num2,"es:",res
 					tecla = raw_input("Pulse enter para continuar")
 					
 				else:
 					if num == "4":
 						print "Dividir"
 						print
-						num1 = input("introduce el primer numero: ")
-						num2 = input("introduce el segundo numero: ")
-						res = num1 / num2
-						print "resultado de",num1,"/",num2,"es:",res
 						tecla = raw_input("Pulse enter para continuar")
 						
 					else:
 						print "Esta opción no existe"
 						print
 						tecla = raw_input("Pulse enter para continuar")
-
-
-
