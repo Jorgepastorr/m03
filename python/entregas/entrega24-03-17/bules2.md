@@ -77,11 +77,12 @@ while salir == False do
         total=total+1
     else
       if ( total == 1 ) then
-          print primo
+          print no es primo
           salir = True
       else
         if ( cont == 1 ) then
-          salir  True
+           prtint primo
+           salir  True
         eif
 ewhile                
 ```  
