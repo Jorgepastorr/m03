@@ -89,7 +89,7 @@ ewhile
 ```python
 a=0
 b=1
-cont=0
+cont=-1
 var=read()
 
 salir=False
