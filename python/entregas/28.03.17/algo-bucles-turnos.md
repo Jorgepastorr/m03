@@ -73,7 +73,7 @@ while salir == False do
 ewhile        
 ```
 
-** muy borracho derecha o izquierda **
+**muy borracho derecha o izquierda**
 ```python
 dir = read( D o I )
 num= 1
@@ -103,7 +103,7 @@ while salir == False do
     num=num+1
 ewhile   
 ```
-** bucle 1-8 paa en la 3ª vuelta **
+**bucle 1-8 paa en la 3ª vuelta**
 ```python
 
 num= 1
