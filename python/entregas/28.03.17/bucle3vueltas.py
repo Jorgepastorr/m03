@@ -14,6 +14,7 @@ while salir == False :
     if num%8==0 :
 		vueltas= vueltas+1
 		print " "
+		num= 0
     if vueltas == 3 :
 		salir = True
     
