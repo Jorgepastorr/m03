@@ -16,5 +16,15 @@ else then
    print "gana player 2"
 eif
 ```
-
+pl1 | pl2 | win
+:---:|:---:|:---:
+pi | pa | 2
+pa | ti | 2
+ti | pi | 2
+pi | ti | 1
+pa | pi | 1
+ti | pa | 1
+ti | ti | =
+pa | pa | =
+pi | pi | =
 
