@@ -10,15 +10,15 @@ body { margin: 0; }
 
 .leftColumn { margin-bottom: .5em; }
 
-/*
-a:link   
+
+a:link, a:visited   
 {   
  text-decoration:none;  
  color:green; 
 }   
-*/
-a:link, a:visited {
-    background-color: #f44336;
+
+a.boton:link, a.boton:visited {
+    background-color: red;
     color: white;
     padding: 14px 25px;
     text-align: center;
@@ -28,7 +28,7 @@ a:link, a:visited {
 
 
 a:hover, a:active {
-    background-color: red;
+    text-decoration: underline;
 }
 
 .nav {
