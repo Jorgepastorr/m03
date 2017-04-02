@@ -24,7 +24,7 @@ while salir == False:
 	elif num%5==4 :
 		pl2 = "pi"
 		
-	if ( pl1 == pl2 ):
+	if ( pl1 == "pi" and pl2 == "pi" ) or ( pl1 == "pa" and pl2 == "pa" ) or ( pl1 == "ti" and pl2 == "ti" ):
 		   print "player 1",pl1,"y player 2",pl2," ''Empate'' "
 
 	elif ( pl1 == "pi" and pl2 == "ti" ) or ( pl1 == "pa" and pl2 == "pi" ) or   ( pl1 == "ti" and pl2 == "pa" ):
