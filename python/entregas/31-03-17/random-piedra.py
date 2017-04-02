@@ -1,14 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import random
-
+import os
+os.system('clear')
 partidas = input("Cuantas partidas quieres jugar: ")
 
+# cont cuenta numero partidas se resetea cada ronda , ronda --> rondas
 ronda,cont=1,1
+
+#  contp suma las partidas cada vez que empatan
+# j1,j2,emp suman jugadas ganadao o empates
 j1,j2,emp,contp=0,0,0,0
 
 salir= False
 while salir == False:
+
+	# numero aleatorio del 1 al 100
 	num= random.randint(1,100)
 	print num,
 	
@@ -42,11 +49,12 @@ while salir == False:
 		
 	if cont == partidas and j1 == j2 :
 		print ""
-		print "Empate vuelta a empezar"
+		print ("\033[;31m"+"Empate vuelta a empezar"+'\033[0;m')
 		print "player 1:",j1,"victorias"
 		print "player 2:",j2,"victorias"
 		print emp,"empates"
 		print ""
+# cada vez que emparan se resetea contadores y se suman el número de partidas a contp
 		contp=cont+contp
 		j1,j2,emp,cont=0,0,0,0
 		ronda=ronda+1
@@ -56,12 +64,19 @@ while salir == False:
 		cont = cont-1
 		
 	cont = cont+1
-	media = j1 + j2 / cont 
 
+# crea la media de partidas ganadas en el ultimo turno
+if j1 > j2 :
+	media = ( j1 * 100 ) / partidas 
+else:
+	media = ( j2 * 100 ) / partidas
+
+# crea el total de partidas
 totalp=cont+contp
 
-print ""
-print "media de:",media
+print "",partidas
+print "\033[;34m""¡¡Ganador!!""\033[0;m"
+print "media de:",media,"%"
 print "player 1:",j1,"victorias"
 print "player 2:",j2,"victorias"
 print emp,"empates"
