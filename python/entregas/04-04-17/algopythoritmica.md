@@ -1,6 +1,17 @@
 ### algo-python-ritmica
 
-**spok**
+**spok**  
+**tabla**  
+piedra, papel, tijera, lagarto, spok  
+  
+gana  | pierden
+:---:|:---:
+pi | la , ti
+pa | sp , pi
+ti | la , pa
+la | sp , pa
+sp | pi , ti
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
