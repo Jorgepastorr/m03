@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 os.system('clear')
 from random import randint
@@ -8,6 +11,7 @@ from random import randint
 j1 = randint(2,14)
 maq = randint(2,14)
 tipo = randint(1,4)
+tipo2 = randint(1,4)
 
 # 11 a 13 de maquina
 if maq == 11 :
@@ -39,6 +43,15 @@ elif tipo == 3 :
 elif tipo == 4 :
 	tipo = "diamantes"
 
+# define tipos 2
+if tipo2 == 1 :
+	tipo2 = "treboles"
+elif tipo2 == 2 :
+	tipo2 = "picas"
+elif tipo2 == 3 :
+	tipo2 = "corazones"
+elif tipo2 == 4 :
+	tipo2 = "diamantes"
 
 
 
@@ -49,10 +62,10 @@ elif j1 > maq :
 		j1 = j11
 	if maq > 10 :
 		maq = maq1
-	print "tu:",j1,tipo,"Maquina:",maq,tipo," ¡¡Ganas tu!!"
+	print "tu:",j1,tipo,"Maquina:",maq,tipo2," ¡¡Ganas tu!!"
 else:
 	if j1 > 10 :
 		j1 = j11
 	if maq > 10 :
 		maq = maq1
-	print "tu:",j1,tipo,"Maquina:",maq,tipo," ¡¡Pierdes!!"
+	print "tu:",j1,tipo,"Maquina:",maq,tipo2," ¡¡Pierdes!!"
