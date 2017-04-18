@@ -31,6 +31,7 @@ while salir == False:
 			print
 			tecla = raw_input("Pulse enter para continuar")
 			############# memnu para seguir sumando ############################
+			
 			sal = False
 			while sal == False:
 				
@@ -38,27 +39,12 @@ while salir == False:
 				opcion = raw_input("Quiere seguir sumando [ si - no ]: ")
 				if opcion == "si" or opcion == "SI":
 					os.system('clear')
-					num3 = input("Inserte el número ")
+					num3 = input("Inserte el número ")				
 					res = res + num3 
 					print "El resultado sumandole",num3,"es:",res
 					print
 					tecla = raw_input("Pulse enter para continuar")
-					#######      menu salir o seguir sumando
-					menus=False
-					while menus == False:
-						
-						os.system('clear')
-						op = raw_input("quiere seguir? Si no: ")
-						if op == "si" or op == "SI" :
-							menus = True
-##							# vuelve al menu anterior y te pregunta otra vez si quieres seguir
-						else:
-							if op == "no" or op == "NO" :
-##								# sale del menu y falla al dar opcion no al anterior para salir
-								menus = True
-								opcion = "no"
-							else:
-								tecla1 = raw_input("Opcion incorrecta")
+					
 				else:
 					if opcion == "no" or opcion == "NO":
 						sal = True
@@ -88,21 +74,7 @@ while salir == False:
 						print "El resultado restandole",num3,"es:",res
 						print
 						tecla = raw_input("Pulse enter para continuar")
-						#######      menu salir o seguir Restando
-						menus=False
-						while menus == False:
-							
-							os.system('clear')
-							op = raw_input("quiere seguir? Si no: ")
-							if op == "si" or op == "SI" :
-								menus = True
-							else:
-								if op == "no" or op == "NO" :
-									# sale del menu y da opcion no al anterior para salir
-									menus = True
-									opcion = "no"
-								else:
-									tecla1 = raw_input("Opcion incorrecta")
+						
 					else:
 						if opcion == "no" or opcion == "NO":
 							sal = True
@@ -132,21 +104,7 @@ while salir == False:
 							print "El resultado multiplicandole",num3,"es:",res
 							print
 							tecla = raw_input("Pulse enter para continuar")
-			#######      menu salir o seguir multiplicando
-							menus=False
-							while menus == False:
-								
-								os.system('clear')
-								op = raw_input("quiere seguir? Si no: ")
-								if op == "si" or op == "SI" :
-									menus = True
-								else:
-									if op == "no" or op == "NO" :
-										# sale del menu y da opcion no al anterior para salir
-										menus = True
-										opcion = "no"
-									else:
-										tecla1 = raw_input("Opcion incorrecta")
+			
 						else:
 							if opcion == "no" or opcion == "NO":
 								sal = True
@@ -176,21 +134,7 @@ while salir == False:
 								print "El resultado dividiendole",num3,"es:",res
 								print
 								tecla = raw_input("Pulse enter para continuar")
-								#######      menu salir o seguir 
-								menus=False
-								while menus == False:
-									
-									os.system('clear')
-									op = raw_input("quiere seguir? Si no: ")
-									if op == "si" or op == "SI" :
-										menus = True
-									else:
-										if op == "no" or op == "NO" :
-											# sale del menu y da opcion no al anterior para salir
-											menus = True
-											opcion = "no"
-										else:
-											tecla1 = raw_input("Opcion incorrecta")
+							
 							else:
 								if opcion == "no" or opcion == "NO":
 									sal = True
