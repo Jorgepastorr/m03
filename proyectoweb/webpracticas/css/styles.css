@@ -7,18 +7,21 @@ margin: 0;
 background-color:#ffd54f ;
 }
 
-.columnsContainer, header { position: relative; margin: .5em; }
+.columnsContainer { position: relative; margin: .5em; }
 
-.leftColumn, .rightColumn, header {  border: 1px solid  #ccc; padding: 1.25em; }
+.leftColumn, .rightColumn, .downColumn {  border: 1px solid  #ccc; padding: 1.25em; }
 
 .leftColumn { margin-bottom: .5em; }
 
 img.cara {
   width:120px;
   height:120px;
-   -webkit-border-radius:100%;
-   -moz-border-radius:100%;
-   border-radius:100%
+  border-radius:100%
+}
+img.school {
+	width:160px;
+	height:40px;
+	border-radius:5%
 }
 
 a:link, a:visited   
@@ -28,14 +31,21 @@ a:link, a:visited
 }   
 
 a.boton:link, a.boton:visited {
-    background-color: red;
-    color: white;
-    padding: 14px 25px;
+    background-color: white;
+    color: black;
+    border: 2px solid green;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius:10%
 }
 
+a.boton:hover, a.boton:active {
+    background-color: green;
+    color: white;
+    border-radius:10%
+}
 
 a:hover, a:active {
     text-decoration: underline;
@@ -46,8 +56,26 @@ span.raton {
     cursor:not-allowed;
 }
 
-span.texto {
+span.texto, span.negrita {
     font-weight: bold;
+}
+span.normal {
+	font-variant:normal;
+}
+span.italic {
+	font-style:italic;
+}
+span.oblique {
+	font-style:oblique;
+}
+span.px {
+	font-size:14px;
+}
+span.mayus {
+	font-variant:small-caps;
+}
+span.subrrayado {
+	text-decoration: underline;
 }
 
 .nav {
@@ -85,7 +113,15 @@ span.texto {
 .inline-items li:last-child {
   padding-right: 0;
 }
-
+<--
+span.google-maps iframe {
+/*position: absolute;*/
+top: 0;
+left: 0;
+height: 100% ;
+width: 100% ;
+!-->
+}
 /* MEDIA QUERIES */
 @media screen and (min-width: 47.5em ) {
   .leftColumn { 
@@ -98,6 +134,16 @@ span.texto {
 	top: 0; 
 	right: 0; 
 	width: 18.75em; 
+	background-color:#dcedc8;
+	}   
+	.downColumn { 
+	position: absolute; 
+	height: 340 ;
+	/*
+	 height: 50% ;
+	 width: 100% ;
+	 */
+	 margin-right: 19.5em; 
 	background-color:#dcedc8;
 	}   
 }
