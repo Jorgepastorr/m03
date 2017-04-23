@@ -55,7 +55,11 @@ a:hover, a:active {
 span.raton {
     cursor:not-allowed;
 }
-
+span.titulo {
+    font-weight: bold;
+    font-variant:small-caps;
+    text-decoration: underline;
+}
 span.texto, span.negrita {
     font-weight: bold;
 }
@@ -113,14 +117,14 @@ span.subrrayado {
 .inline-items li:last-child {
   padding-right: 0;
 }
-<--
+
 span.google-maps iframe {
-/*position: absolute;*/
-top: 0;
-left: 0;
-height: 100% ;
-width: 100% ;
-!-->
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 100% ;
+	width: 100% ;
+
 }
 /* MEDIA QUERIES */
 @media screen and (min-width: 47.5em ) {
@@ -137,13 +141,9 @@ width: 100% ;
 	background-color:#dcedc8;
 	}   
 	.downColumn { 
-	position: absolute; 
-	height: 340 ;
-	/*
-	 height: 50% ;
-	 width: 100% ;
-	 */
-	 margin-right: 19.5em; 
+	position: absolute; 	
+	height: 50% ;
+	width: 100% ;
 	background-color:#dcedc8;
 	}   
 }
