@@ -36,7 +36,7 @@ tipo1=0
 ##########################################################
 
 ####
-def apuesta_condicion_entrada(salir,salir1,apuesta,credito,rata):
+def apuesta_condicion_entrada(salir,apuesta,credito,rata):
 	
 	## despues de cada jugada mira que tengas mas de 10, si nno te hecha
 	if credito < 10 :
@@ -74,7 +74,7 @@ def apuesta_condicion_entrada(salir,salir1,apuesta,credito,rata):
 				apuesta = input("Cuanto quiere apostar: ")
 				os.system('clear')
 	
-	return salir,salir1,apuesta,credito,rata
+	return salir,apuesta,credito,rata
 ######
 
 def resultado(maq,j1,maq1,j11,tipo,tipo1,credito,apuesta):
@@ -141,21 +141,21 @@ def jugada(salir,j1,maq,tipo,tipo1):
 	elif tipo1 == 4 :
 		tipo1 = "diamantes"
 		
-	return salir,j1,maq,tipo,tipo1
+	return salir,j1,j11,maq,maq1,tipo,tipo1
 
 ##########################################################
 #####				level 1
 ##########################################################
 
 # genera apuesta y condicion de salida
-salir,salir1,apuesta,credito,rata = apuesta_condicion_entrada(salir,salir1,apuesta,credito,rata) 
+salir,apuesta,credito,rata = apuesta_condicion_entrada(salir,apuesta,credito,rata) 
 
 # genera jugada
 while salir == False:		
-	salir,j1,maq,tipo,tipo1 = jugada(salir,j1,maq,tipo,tipo1)
+	salir,j1,j11,maq,maq1,tipo,tipo1 = jugada(salir,j1,maq,tipo,tipo1)
 	
 	## resultado de la jugada
 	credito,apuesta = resultado(maq,j1,maq1,j11,tipo,tipo1,credito,apuesta)
 	
 	# genera apuesta y condicion de salida						
-	salir,salir1,apuesta,credito,rata = apuesta_condicion_entrada(salir,salir1,apuesta,credito,rata) 
+	salir,apuesta,credito,rata = apuesta_condicion_entrada(salir,apuesta,credito,rata) 
