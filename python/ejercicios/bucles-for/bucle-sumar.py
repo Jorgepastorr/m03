@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 
 #######
-# Bucle: sumar desde el número 1 hasta el 5. Sólo los pares.
+# Bucle: sumar desde el número 1 hasta el 5
 # Ha de salir por pantalla
-# 2+4=6
+# 1+2+3+4+5=15
+# ejercicio-bucle-sumar.py
 ##############
 todo= 0
 for i in range(1,6) :
-	if i %2==0:
-		print (i),"+",
-		todo =todo+i
+	print (i),"+",
+	todo =todo+i
+
 print "=",todo
