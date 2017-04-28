@@ -63,6 +63,23 @@ for i in range(1,6) :
 		todo =todo+i
 print "=",todo
 ```
+**Bucle for propio, permite cadenas ascendentes como descendentes**  
+```python  
+def mi_rango(inicio,final,incremento):
+	
+	if inicio <= final :
+		while inicio <= final :
+			yield inicio
+			inicio = inicio + incremento
+	else:
+		while inicio >= final :
+			yield inicio
+			inicio = inicio - incremento
+		
+for i in mi_rango(2,9,3):
+	print i
+```
+
 
 
 

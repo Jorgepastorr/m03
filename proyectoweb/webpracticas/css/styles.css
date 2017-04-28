@@ -9,7 +9,7 @@ background-color:#ffd54f ;
 
 .columnsContainer { position: relative; margin: .5em; }
 
-.leftColumn, .rightColumn, .downColumn {  border: 1px solid  #ccc; padding: 1.25em; }
+.leftColumn, .rightColumn, .downColumn {  border: 1px solid  #ccc; padding: 1.25em; background-color:#dcedc8; }
 
 .leftColumn { margin-bottom: .5em; }
 
@@ -29,7 +29,10 @@ a:link, a:visited
  text-decoration:none;  
  color:green; 
 }   
-
+h1.sorpresa {
+    color:#dcedc8;
+    text-align: center;
+}
 a.boton:link, a.boton:visited {
     background-color: white;
     color: black;
@@ -117,6 +120,55 @@ span.subrrayado {
 .inline-items li:last-child {
   padding-right: 0;
 }
+
+
+
+/* #########################          FOTO NOMBRE    */
+.foto-nombre {
+    display: flex;
+    align-items: left
+}
+
+/*   #########################   foto    rotacion      */
+.front, .back, .container {
+	width:120px;
+	height:120px;
+	border-radius:100%
+}
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+  transition: all 0.3s linear;
+}
+.back {
+  transition: all 0.3s linear;
+	transform: rotateY(180deg);
+}
+.container {
+  position: relative;
+}
+.container:hover .front {
+  transform: rotateY(180deg);
+}
+.container:hover .back {
+  transform: rotateY(360deg);
+}
+/*  #########################       fin rotacion   */
+
+.nombre {
+width:250px;
+	height:120px;
+  text-align: center;
+}
+
+/*  #########################   FIN FOTO NOMBRE */
 
 span.google-maps iframe {
 	position: relative;
