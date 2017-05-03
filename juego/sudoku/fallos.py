@@ -10,9 +10,9 @@ os.system('clear')
 
 ############ listas ###############
 ## listas de lineas y recuadros
-A,B,C,D,E,F,G,H,I=[],[],[],[],[],[],[],[],[]
-l1,l2,l3,l4,l5,l6,l7,l8,l9=[],[],[],[],[],[],[],[],[]
-r1,r2,r3,r4,r5,r6,r7,r8,r9=[],[],[],[],[],[],[],[],[]
+A,B,C,D,E,F,G,H,I=[0],[],[],[],[],[],[],[],[]
+l1,l2,l3,l4,l5,l6,l7,l8,l9=[0],[0],[],[],[],[],[],[],[]
+r1,r2,r3,r4,r5,r6,r7,r8,r9=[0],[],[],[],[],[],[],[],[]
 ## agrupo todas las listas en 1
 lista_letras=A+B+C+D+E+F+G+H+I
 lista_numeros=l1+l2+l3+l4+l5+l6+l7+l8+l9
@@ -40,9 +40,14 @@ i1,i2,i3,i4,i5,i6,i7,i8,i9=0,0,0,0,0,0,0,0,0
 def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1,r2,r3,r4,r5,r6,r7,r8,r9,numero,a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9):
 	if casilla == "a1":				
 		if (not numero in A) and (not numero in l1) and (not numero in r1):
-			A.insert(1,numero)
-			l1.insert(1,numero)
-			r1.insert(1,numero)
+			# quitar el anterior
+			A.remove(a1)
+			l1.remove(a1)
+			r1.remove(a1)
+			# insertar número que quieres
+			A.insert(0,numero)
+			l1.insert(0,numero)
+			r1.insert(0,numero)
 			a1=numero
 			salir=True
 		else:
@@ -53,6 +58,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 
 	elif casilla == "a2":				
 		if (not numero in A) and (not numero in l2) and (not numero in r1):
+			# quitar el anterior
+			A.remove(a2)
+			l2.remove(a2)
+			r1.remove(a2)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l2.insert(1,numero)
 			r1.insert(1,numero)
@@ -231,6 +241,7 @@ while inicial== False:
 	while salir == False:
 		
 		# cuando todas las listas estan llenas ganas.
+		# cambiar por todas listas ordenadas de 1 al 9 con sort
 		if (len(listas)==243):
 			os.system('clear')
 			print "¡¡ Felicidades !! Sin duda no tiene amigos."
