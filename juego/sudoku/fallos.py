@@ -13,12 +13,7 @@ os.system('clear')
 A,B,C,D,E,F,G,H,I=[0],[],[],[],[],[],[],[],[]
 l1,l2,l3,l4,l5,l6,l7,l8,l9=[0],[0],[],[],[],[],[],[],[]
 r1,r2,r3,r4,r5,r6,r7,r8,r9=[0],[],[],[],[],[],[],[],[]
-## agrupo todas las listas en 1
-lista_letras=A+B+C+D+E+F+G+H+I
-lista_numeros=l1+l2+l3+l4+l5+l6+l7+l8+l9
-lista_recuadros=r1+r2+r3+r4+r5+r6+r7+r8+r9
 
-listas=lista_letras+lista_numeros+lista_recuadros
 #################################
 
 #### variables del panel
@@ -75,6 +70,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a3":				
 		if (not numero in A) and (not numero in l3) and (not numero in r1):
+			# quitar el anterior
+			A.remove(a3)
+			l3.remove(a3)
+			r1.remove(a3)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l3.insert(1,numero)
 			r1.insert(1,numero)
@@ -87,6 +87,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a4":				
 		if (not numero in A) and (not numero in l4) and (not numero in r2):
+			# quitar el anterior
+			A.remove(a4)
+			l4.remove(a4)
+			r2.remove(a4)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l4.insert(1,numero)
 			r2.insert(1,numero)
@@ -99,6 +104,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a5":				
 		if (not numero in A) and (not numero in l5) and (not numero in r2):
+			# quitar el anterior
+			A.remove(a5)
+			l5.remove(a5)
+			r2.remove(a5)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l5.insert(1,numero)
 			r2.insert(1,numero)
@@ -111,6 +121,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a6":				
 		if (not numero in A) and (not numero in l6) and (not numero in r2):
+			# quitar el anterior
+			A.remove(a6)
+			l6.remove(a6)
+			r2.remove(a)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l6.insert(1,numero)
 			r2.insert(1,numero)
@@ -123,6 +138,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a7":				
 		if (not numero in A) and (not numero in l7) and (not numero in r3):
+			# quitar el anterior
+			A.remove(a7)
+			l7.remove(a7)
+			r3.remove(a7)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l7.insert(1,numero)
 			r3.insert(1,numero)
@@ -135,6 +155,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a8":				
 		if (not numero in A) and (not numero in l8) and (not numero in r3):
+			# quitar el anterior
+			A.remove(a8)
+			l8.remove(a8)
+			r3.remove(a8)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l8.insert(1,numero)
 			r3.insert(1,numero)
@@ -147,6 +172,11 @@ def asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1
 			sleep (4)
 	elif casilla == "a9":				
 		if (not numero in A) and (not numero in l9) and (not numero in r3):
+			# quitar el anterior
+			A.remove(a9)
+			l9.remove(a9)
+			r3.remove(a9)
+			# insertar número que quieres
 			A.insert(1,numero)
 			l9.insert(1,numero)
 			r3.insert(1,numero)
@@ -224,6 +254,21 @@ def falla_casilla(casilla):
 	return fallo
    
 ###################################3
+
+def si_completas(A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1,r2,r3,r4,r5,r6,r7,r8,r9):
+	# ordena las listas
+	listas={1:A,2:B,3:C,4:D,5:E,6:F,7:G,8:H,9:I,10:l1,11:l2,12:l3,13:l4,14:l5,15:l6,16:l7,17:l8,18:l9,19:r1,20:r2,21:r3,22:r4,23:r5,24:r6,25:r7,26:r8,27:r9}
+	for x in xrange(1,28):
+		listas[x].sort()
+
+	# condicion de salida
+	plantilla=[1,2,3,4,5,6,7,8,9]
+	# si todas las listas estan iguales a la plantilla ganas.
+	if (( plantilla == A ) and ( plantilla == B ) and ( plantilla == C ) and ( plantilla == D ) and( plantilla == E ) and( plantilla == F ) and( plantilla == G ) and( plantilla == H ) and( plantilla == I ) and( plantilla == l1 ) and( plantilla == l2 ) and( plantilla == l3 ) and( plantilla == l4 ) and( plantilla == l5 ) and( plantilla == l6 ) and( plantilla == l7 ) and( plantilla == l8 ) and( plantilla == l9 ) and( plantilla == r1 ) and( plantilla == r2 ) and( plantilla == r3 ) and( plantilla == r4 ) and( plantilla == r5 ) and( plantilla == r6 ) and( plantilla == r7 ) and( plantilla == r8 ) and( plantilla == r9 )):
+		return True
+	else:
+		return False
+
 ###################################3
 ###################################3
 ###################################3
@@ -232,6 +277,7 @@ inicial = False
 while inicial== False:
 	
 	os.system('clear')
+	# plantilla def sudoku
 	a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9=sudoku(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9)
 	print "salir: numero = -1"
 	casilla = raw_input("casilla: ")
@@ -240,15 +286,14 @@ while inicial== False:
 	salir = False
 	while salir == False:
 		
-		# cuando todas las listas estan llenas ganas.
-		# cambiar por todas listas ordenadas de 1 al 9 con sort
-		if (len(listas)==243):
+		# cuando todas las listas esten ordenadas del 1-9 ganas.
+		if si_completas(A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1,r2,r3,r4,r5,r6,r7,r8,r9):
 			os.system('clear')
 			print "¡¡ Felicidades !! Sin duda no tiene amigos."
 			salir = True
 			inicial= True
 		## si quieres salir
-		if numero == -1:
+		elif numero == -1:
 			os.system('clear')
 			print "Adios"
 			salir = True
@@ -256,6 +301,7 @@ while inicial== False:
 	# si quieres jugar
 		# condición para jugar (poner casilla y numero correcto)
 		elif  condicion_entrada(casilla,numero):
+			# def asignación de posición
 			salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1,r2,r3,r4,r5,r6,r7,r8,r9,numero,a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9 = asignacion_de_posicion(salir,A,B,C,D,E,F,G,H,I,l1,l2,l3,l4,l5,l6,l7,l8,l9,r1,r2,r3,r4,r5,r6,r7,r8,r9,numero,a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9)
 			###########################33
 			
@@ -272,6 +318,7 @@ while inicial== False:
 			
 			sleep (4)
 			os.system('clear')
+			# plantilla def sudoku
 			a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9=sudoku(a1,a2,a3,a4,a5,a6,a7,a8,a9,b1,b2,b3,b4,b5,b6,b7,b8,b9,c1,c2,c3,c4,c5,c6,c7,c8,c9,d1,d2,d3,d4,d5,d6,d7,d8,d9,e1,e2,e3,e4,e5,e6,e7,e8,e9,f1,f2,f3,f4,f5,f6,f7,f8,f9,g1,g2,g3,g4,g5,g6,g7,g8,g9,h1,h2,h3,h4,h5,h6,h7,h8,h9,i1,i2,i3,i4,i5,i6,i7,i8,i9)
 			print "salir: numero = -1"
 			casilla = raw_input("casilla: ")
