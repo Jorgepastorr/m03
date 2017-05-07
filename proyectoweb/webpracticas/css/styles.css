@@ -9,9 +9,20 @@ background-color:#ffd54f ;
 
 .columnsContainer { position: relative; margin: .5em; }
 
-.leftColumn, .rightColumn, .downColumn {  border: 1px solid  #ccc; padding: 1.25em; background-color:#dcedc8; }
+.rightColumn, .downColumn { 
+	border: 1px solid  #ccc; 
+	padding: 1.25em; 
+	background-color:#dcedc8;}
 
-.leftColumn { margin-bottom: .5em; }
+.leftColumn {
+	margin-bottom: .5em; 
+	border: 1px solid  #ccc; 
+	padding: 1.25em; 
+	background-color:#dcedc8; 
+	background-image: url("../images/tree.png") ;
+	background-position: 95% 95%;
+	background-repeat: no-repeat;
+}
 
 img.cara {
   width:120px;
@@ -23,6 +34,11 @@ img.school {
 	height:40px;
 	border-radius:5%
 }
+
+
+hr { 
+    border-width: 5px;
+} 
 
 a:link, a:visited   
 {   
@@ -182,7 +198,6 @@ span.google-maps iframe {
 @media screen and (min-width: 47.5em ) {
   .leftColumn { 
   margin-right: 19.5em; 
-  background-color:#dcedc8;
   }
 
 	.rightColumn { 
@@ -190,13 +205,11 @@ span.google-maps iframe {
 	top: 0; 
 	right: 0; 
 	width: 18.75em; 
-	background-color:#dcedc8;
 	}   
 	.downColumn { 
 	position: absolute; 	
 	height: 50% ;
 	width: 100% ;
-	background-color:#dcedc8;
 	}   
 }
 

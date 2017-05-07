@@ -13,12 +13,17 @@ def mi_rango(inicio,final,incremento):
 			inicio = inicio - incremento
 
 #########################
-
+# Crea esta cuadricula #
+# - A B C 
+# 1 - - - 
+# 2 - * - 
+# 3 * - - 
+# 4 - - -
 #########################
 
 
 for fila in mi_rango(1,5,1):
-	print ""
+	
 	for columna in mi_rango(1,4,1):
 		if fila == 1:			
 			if columna == 2:
@@ -30,12 +35,17 @@ for fila in mi_rango(1,5,1):
 			else:
 				print "-",
 	
-		elif columna == 1:
-			print fila-1,
 		else:
-			print "-",
+			if columna == 1:
+				print fila-1,
+			else:
+				if ( ( fila == 3 and columna == 3 ) or
+				     ( fila == 4 and columna == 2 ) ):
+					print "*",
+				else:
+					print "-",	
 
-
+	print ""
 
 
 
