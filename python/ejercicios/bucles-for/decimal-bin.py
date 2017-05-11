@@ -12,14 +12,21 @@ def mi_rango(inicio,final,incremento):
 
 numero=input("inserte número a pasar a binario: ")
 
-for vueltas in mi_rango(1,7,1) :
+for vueltas in mi_rango(1,8,1) :
 
-		if numero//2%2==1 :
+	if vueltas == 1:
+		if numero%2==1:
 			print 1,
-			numero= numero//2
-			print numero
-			
-		if numero//2%2==0 :
+	
+		elif numero%2==0:
 			print 0,
-			numero= numero//2
-			print numero
+
+	else: 
+		if numero/2%2==1 :
+			print 1,
+			
+		elif numero/2%2==0 :
+			print 0,
+		
+		numero= numero/2
+			
