@@ -23,6 +23,16 @@ background-color:#ffd54f ;
 	background-position: 95% 95%;
 	background-repeat: no-repeat;
 }
+.ampliar {
+	width:120px;
+	height:75px;
+	border-radius: 8px;
+}
+
+.ampliar:hover {
+    width: 300px;
+    height: 200px;
+}
 
 img.cara {
   width:120px;
