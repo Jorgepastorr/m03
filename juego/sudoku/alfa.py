@@ -65,7 +65,8 @@ def control_casillas_originales(salir_raw):
 	columna=raw_input("Inserta número de columna: ")
 	# jumnta 2 variables en 1
 	casilla=(fila+columna)
-
+	
+	# si la casilla es diferente a 0 no te deja insertar el númeo
 	if asignacion[casilla] != 0 :
 		print "No puedes cambiar ese número. \nEs del sudoku original."
 	else:	
@@ -373,6 +374,7 @@ salir = False
 numero=0
 fila=20
 columna=20
+
 
 # condiciones de entrada
 salir,numero,fila,columna,casilla = condiciones_de_entrada(salir,numero,fila,columna,si_completas,sudoku,condicion_entrada,fila_cambio_a_numero,columna_a_num,asignacion)
