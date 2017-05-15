@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import calendar
+
 def mi_rango(inicio,final,incremento):
 	
 	if inicio <= final :
@@ -13,11 +15,15 @@ def mi_rango(inicio,final,incremento):
 			inicio = inicio - incremento
 		
 #############3
-mes=raw_input("que mes quieres ver de este año? ")
+anyo=input("Indica el año: ")
+mes=input("Que mes quieres ver? ")
 
+# da la totalidad de días que tiene ese mes en ese año
+fin_dias_mes=calendar.monthrange(anyo, mes)[1]
+
+#~ da el día de la semana que empieza el mes de lunes a domingo en 1 - 7
+inicio_dia_semana=(calendar.weekday(anyo,mes,1))+1
 cont = 1		
-inicio_mes = {"enero":7,"febrero":3,"marzo":3,"abril":6,"mayo":1,"junio":4,"julio":6,"agosto":2,"septiembre":5,"octubre":7,"noviembre":3,"diciembre":5}
-fin_mes =  {"enero":31,"febrero":28,"marzo":31,"abril":30,"mayo":31,"junio":30,"julio":31,"agosto":31,"septiembre":30,"octubre":31,"noviembre":30,"diciembre":31}
 
 for fila in mi_rango(1,7,1):
 	for columna in mi_rango(1,7,1):
@@ -38,13 +44,13 @@ for fila in mi_rango(1,7,1):
 				print "D ",
 		
 		elif ( fila == 2 ):
-			if (inicio_mes[mes] <= columna ):
+			if (inicio_dia_semana <= columna ):
 				print cont,"",
 				cont=cont+1
 			else:
 				print "  ",
 	
-		elif ( cont <= fin_mes[mes] ):
+		elif ( cont <= fin_dias_mes ):
 			####### solo para que quede bonito.
 			if cont < 10 :
 				print cont,"",
