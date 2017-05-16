@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-li=[1,2,3]
+li=["hola","adios"]
 
-print li[2]+1
+num=1
+print li[num]
+li.remove(li[num])
+print li

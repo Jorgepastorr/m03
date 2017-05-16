@@ -11,9 +11,9 @@ os.system("clear")
 li=[]
 
 while True:
-	num = randint(0,5)		# crea números
+	num = randint(0,50)		# crea números
 	
-	if len(li) == 6 :       ## len indica cuantos números hay en la lista
+	if len(li) == 50 :       ## len indica cuantos números hay en la lista
 		print "salir"		# si hay 6 en la lista sale del bucle
 		break
 	if not num in li :		### Si no existe número en la lista entra.
