@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from random import randint
+import random
 import os
 os.system("clear")
 
@@ -21,28 +21,26 @@ baraja=["A Picas","A Corazones","A Treboles","A Rombos",
 "K Picas","K Corazones","K Treboles","K Rombos"]
 
 ##################
-def carta_aleatoria(baraja,var):
+def carta_aleatoria(baraja):
 	maquina=""
 	cartaj1=""
 
 	
 	if peticion == "planto":
-		num = randint(0,var)		
-		maquina = baraja[num]
-		baraja.remove(baraja[num])	
-		var=var-1	
+		num = random.choice(baraja)	
+		maquina = num
+		baraja.remove(num)	
 		
 	else:
-		num = randint(0,var)		
-		cartaj1 = baraja[num]
-		baraja.remove(baraja[num])	
-		var=var-1	
+		num = random.choice(baraja)		
+		cartaj1 = num
+		baraja.remove(num)	
 		
 	if len(baraja) == 0:
 		print "Te quedaste sin cartas"
 		salir = True
 
-	return baraja,num,var,maquina,cartaj1
+	return baraja,num,maquina,cartaj1
 ############################3
 
 def asignacion_valores(cartaj1,valor):
@@ -122,12 +120,13 @@ def asignacion_valores_maquina(maquina,valor_maquina):
 valor=0
 valor_maquina=0
 peticion=""
-var=51
+
 
 print "Black jack \nReglas del juego: \nTienes conseguir superar a la máquina con un máximo de 21'5"
 print "A - 0.5 o 11 \nNúmeros equivale a su número \nJ,Q,K - 0.5\n"
 print "Salir -1"
 peticion=raw_input("Enter si quieres carta? ")	
+os.system("clear")
 
 salir = False
 while salir == False:
@@ -136,7 +135,7 @@ while salir == False:
 		salir = True
 		print "¡¡ADIOS!!"
 	else:
-		baraja,num,var,maquina,cartaj1 = carta_aleatoria(baraja,var)
+		baraja,num,maquina,cartaj1 = carta_aleatoria(baraja)
 		
 		print "\nTu carta es",cartaj1
 		
@@ -150,16 +149,18 @@ while salir == False:
 			print "Puedes plantate con 'planto'"
 			print "Salir -1"
 			peticion=raw_input("Enter si quieres carta? ")	
+			os.system("clear")
 ##########33				
 			if peticion == "planto":
 				#####
 				while valor_maquina < 16 :
-					baraja,num,var,maquina,cartaj1 = carta_aleatoria(baraja,var)
+					baraja,num,maquina,cartaj1 = carta_aleatoria(baraja)
 					#
 					print maquina
 					valor_maquina = asignacion_valores_maquina(maquina,valor_maquina)
 					print valor_maquina
 				######
+				os.system("clear")
 				if valor <= valor_maquina :
 					print "Pierdes J1:",valor," Máquina:",valor_maquina 
 				
