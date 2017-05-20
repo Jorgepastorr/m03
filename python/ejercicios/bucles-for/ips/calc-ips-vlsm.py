@@ -5,6 +5,8 @@
 #       calculadora de ip vlsm solo clase c y da 1 red
 ###################################################33
 ################
+import os
+os.system("clear")
 
 ###################################################33
 #             niveles
@@ -18,7 +20,7 @@ def mi_rango(inicio,fin,incremento):
 		inicio=inicio+incremento
 
 ############### asigna bits de mac saliente
-def control_de_host(host,bits):
+def control_de_host(host,bits,vuelta):
 
 	if ( host >= 0 and host <= 2 ):
 		host_utiles=2
@@ -48,7 +50,8 @@ def control_de_host(host,bits):
 		print "No caben tantos host con esa mac inicial "
 		print "deberia se como máximo de",bits_masc,"bits."
 	
-	print "bits mascara nueva",bits_masc
+	if vuelta == 1:
+		print "bits mascara nueva",bits_masc
 	
 	return bits_masc,host_utiles
 
@@ -84,6 +87,7 @@ def macara_ini_a_masc_binaria(mascara_inicial,mi_rango):
 		int(float(a))
 		mascara_binaria.append(int(a))
 
+
 	print mascara_binaria
 	print "bits masara inicial",bits
 	
@@ -92,7 +96,7 @@ def macara_ini_a_masc_binaria(mascara_inicial,mi_rango):
 ###########################
 #################### nueva mascara en bonario y decimal
 
-def nueva_mascara(bits_masc,mi_rango):
+def nueva_mascara(bits_masc,mi_rango,vuelta):
 	unos=1
 	a= ""
 	nueva_masc_bin=[]
@@ -114,8 +118,7 @@ def nueva_mascara(bits_masc,mi_rango):
 		nueva_masc_bin.append(int(a))
 		a=""
 
-	# mascara final binaria
-	print nueva_masc_bin
+	
 	######################## binario a decimal
 
 	resultado= 0
@@ -145,58 +148,173 @@ def nueva_mascara(bits_masc,mi_rango):
 		resultado= 0
 		final= 0
 	
-	# mascara final decimal
-	print masc_final
+	if vuelta == 1:
+		# mascara final binaria
+		print nueva_masc_bin
+		# mascara final decimal
+		print masc_final
 	
 	return nueva_masc_bin,masc_final		
+	
+##################### datos de entrada y pequeño control
+def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras):	
+	
+
+	salir=False
+	while salir == False:
+		### control de ip
+		try:
+			print "Separa los octetos por comas."
+			ip=input("ip: ")
+			salir=True
+		except:
+			os.system("clear")
+			print "lo siento introduces algun dato mal"	
+		
+	##### contrl de macaras incorrectas
+	salir_mascara=False
+	while salir_mascara == False:
+		try:
+			mascara_inicial=input("mascara: ")
+			if ((mascara_inicial[3] not in posibles_mascaras) or
+				(mascara_inicial[2] not in posibles_mascaras) or
+				(mascara_inicial[1] not in posibles_mascaras) or
+				(mascara_inicial[0] not in posibles_mascaras) or
+				(mascara_inicial[0] < mascara_inicial[1]) or
+				(mascara_inicial[1] < mascara_inicial[2]) or
+				(mascara_inicial[2] < mascara_inicial[3])):
+				os.system("clear")
+				print "Esa mascara no es correcta"
+			else:
+				salir_mascara= True
+		except:
+			os.system("clear")
+			print "Parametros incorrectos"
+	#####
+	#### control host
+	salir_host=False
+	while salir_host == False:
+		try:
+			if mascara_inicial[0] < 255  :
+				num_host_posibles= ((254 - mascara_inicial[0])*(255*3)) 
+			elif mascara_inicial[1] < 255 :
+				num_host_posibles= ((254 - mascara_inicial[1])*(255*2))
+			elif mascara_inicial[2] < 255 :
+				num_host_posibles= ((254 - mascara_inicial[2])*255)
+			elif mascara_inicial[3] < 255 :
+				num_host_posibles= (254 - mascara_inicial[3])
+				
+			print "Número máximo de host: ",num_host_posibles
+			host=input("Cuantos host quieres : ")
+			if host < 2:
+				os.system("clear")
+				print "como mínimo necesitas 2 host"
+		
+			elif num_host_posibles < host:
+				os.system("clear")
+				print "Demasiados host"
+			
+			else:
+				salir_host =True
+		except:
+			os.system("clear")
+			print "Parametros incorrectos"
+	#########33
+
+
+	return ip,mascara_inicial,host
 ###################################################33
 #      codigo
 ###################################################33
 ###################################################33
 
-print "Separa los octetos por comas."
-ip=input("ip: ")
-mascara_inicial=input("mascara: ")
-host=input("Cuantos host quieres max 254: ")
+ip=[]
+mascara_inicial=[]
+host=[]
+posibles_mascaras=[0,128,192,224,240,248,252,254,255]
+
+	# datos de entrada con control de errores
+ip,mascara_inicial,host = control_de_entrada(ip,mascara_inicial,host,posibles_mascaras)
 
 # pasa la mascara inicial a binaria
 mascara_binaria,bits = macara_ini_a_masc_binaria(mascara_inicial,mi_rango)
 
+#bucle de subrede por hacer
+########
+
+rondas =0
+octeto3=0
+
+for vuelta in mi_rango(1,3,1):
+
 # calcula si caben los host
-bits_masc,host_utiles = control_de_host(host,bits)
+	bits_masc,host_utiles = control_de_host(host,bits,vuelta)
 
 # hace mascara nueva tanto binario como decimal
-nueva_masc_bin,masc_final = nueva_mascara(bits_masc,mi_rango)
+	nueva_masc_bin,masc_final = nueva_mascara(bits_masc,mi_rango,vuelta)
 
 #####################
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+###################################################33
+###################################################33
+###################################################33
+#  construcción falta clase solo esta la clase C
+###################################################33
+	if mascara_inicial[0] < 255  :
+		var = 0
+	elif mascara_inicial[1] < 255 :
+		var = 1
+	elif mascara_inicial[2] < 255 :
+		var = 2
+	elif mascara_inicial[3] < 255 :
+		var = 3
 ############### calcula ip
-octeto3=0
-for fila in mi_rango(1,2,1):
-	for col in mi_rango(1,4,1):
-		if fila == 1:
-			if col == 1:
-				print "       red        ",
-			elif col ==2:
-				print "    Primer host   ",
-			elif col ==3:
-				print "    Ultimo host    ",
-			elif col ==4:
-				print "       Brodcast      ",
-			elif col ==5:
-				print "       Mascara      ",
-				
-		if fila == 2:
-			if col == 1:
-				print ip[:3],mascara_inicial[3]," ",
-			elif col ==2:
-				print ip[:3],mascara_inicial[3]+1," ",
-			elif col ==3:
-				print ip[:3],mascara_inicial[3]+host_utiles," ",					
-			elif col ==4:
-				print ip[:3],mascara_inicial[3]+host_utiles+1," ",	
-				
-			elif col ==5:
-				print masc_final,
-	print ""
+	
+	
+	for fila in mi_rango(0,0,1):
+
+		print rondas," ",
+		for col in mi_rango(1,5,1):
+			if vuelta==1 and fila == 0:
+				if col == 1:
+					print "       red        ",
+				elif col ==2:
+					print "    Primer host   ",
+				elif col ==3:
+					print "    Ultimo host    ",
+				elif col ==4:
+					print "       Brodcast      ",
+				elif col ==5:
+					print "       Mascara      ",
+					
+			else:
+				if var == 3:
+							
+					if col == 1:
+						print ip[:var],octeto3," ",
+					elif col ==2:
+						print ip[:var],octeto3+1," ",
+					elif col ==3:
+						print ip[:var],octeto3+host_utiles," ",					
+					elif col ==4:
+						print ip[:var],octeto3+host_utiles+1," ",	
+						octeto3 = octeto3+host_utiles+2
+					elif col ==5:
+						print masc_final,
+			
+		rondas=rondas+1
+			
+		print ""
