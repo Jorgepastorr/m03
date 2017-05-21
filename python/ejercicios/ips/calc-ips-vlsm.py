@@ -20,7 +20,42 @@ def mi_rango(inicio,fin,incremento):
 		inicio=inicio+incremento
 
 ############### asigna bits de mac saliente
-def control_de_host(host,bits,vuelta,redes):
+def rangos_host(host):
+	
+	if ( host >= 0 and host <= 2 ):
+		host=2
+	elif ( host >= 3 and host <= 6 ):
+		host=6
+	elif ( host >= 7 and host <= 14 ):
+		host=14
+	elif ( host >= 15 and host <= 30 ):
+		host=30
+	elif ( host >= 31 and host <= 62 ):
+		host=62
+	elif ( host >= 63 and host <= 126 ):
+		host=126
+	elif ( host >= 127 and host <= 254 ):
+		host=254
+	elif ( host >= 255 and host <= 510 ):
+		host=510
+	elif ( host >= 511 and host <= 1022 ):
+		host=1022
+	elif ( host >= 1023 and host <= 2046 ):
+		host=2046
+	elif ( host >= 2047 and host <= 4094 ):
+		host=4094
+	elif ( host >= 4095 and host <= 8190 ):
+		host=8190
+	elif ( host >= 8191 and host <= 16382 ):
+		host=16382
+	elif ( host >= 16383 and host <= 32766 ):
+		host=32766
+	elif ( host >= 32767 and host <= 65534 ):
+		#host=65534
+		 host=65279
+		 
+	return host
+def control_de_host(host,vuelta,redes):
 
 	if ( redes[vuelta] >= 0 and redes[vuelta] <= 2 ):
 		host_utiles=2
@@ -65,14 +100,9 @@ def control_de_host(host,bits,vuelta,redes):
 		host_utiles=32766
 		bits_masc=32-15
 	elif ( redes[vuelta] >= 32767 and redes[vuelta] <= 65534 ):
-		host_utiles=65534
+		host_utiles=65279
+		#host_utiles=65534
 		bits_masc=32-16
-	
-	else:
-		print "no acepto tantos host"
-	if bits_masc < bits :
-		print "No caben tantos host con esa mac inicial "
-		print "deberia se como máximo de",bits_masc,"bits."
 	
 	
 	return bits_masc,host_utiles
@@ -169,7 +199,7 @@ def nueva_mascara(bits_masc,mi_rango,vuelta):
 	return nueva_masc_bin,masc_final		
 	
 ##################### datos de entrada y pequeño control
-def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes):	
+def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes,lista_host):	
 	
 
 	salir=False
@@ -219,22 +249,26 @@ def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes):
 	elif mascara_inicial[1] < 255 :
 		num_host_posibles= ((255 - mascara_inicial[1])*(255*2))
 	elif mascara_inicial[2] < 255 :
-		num_host_posibles= (((255 - mascara_inicial[2])*255)-1)
+		num_host_posibles= (65279 - (mascara_inicial[2] * 255))
 	elif mascara_inicial[3] < 255 :
 		num_host_posibles= (254 - mascara_inicial[3])
 
-	lista_host=[]
+	num_host_posibles_copia=num_host_posibles
 	for i in mi_rango(1, subredes,1):
 		## contrl de host
 ####3 mejorar	la resta de hosts a de ser proporcional a 2^tal-2 y ajustar num_posibles de host	
 		salir_host=False
 		while salir_host == False:
 			try:			
+				print "Puede que salte el aviso de demasiados host sin que introduzcas el número máximo indicado."
+				print "Esto se debe a que tienen un rango específico establecido."
 				print "Número máximo de host: ",num_host_posibles
 				print "Para red",i
 				host = input("Cuantos host quieres? ") 
 				os.system("clear")
-				
+				# calcula el valor del rango de host
+				host=rangos_host(host)
+								
 				if host < 2:
 					os.system("clear")
 					print "como mínimo necesitas 2 host"
@@ -265,6 +299,7 @@ def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes):
 #      codigo
 ###################################################33
 ###################################################33
+lista_host=[]
 redes={}
 ip=[]
 mascara_inicial=[]
@@ -278,7 +313,7 @@ octeto31=0
 
 
 	# datos de entrada con control de errores
-ip,mascara_inicial,host,redes,subredes = control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes)
+ip,mascara_inicial,host,redes,subredes = control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes,lista_host)
 
 # pasa la mascara inicial a binaria
 mascara_binaria,bits = macara_ini_a_masc_binaria(mascara_inicial,mi_rango)
@@ -290,7 +325,7 @@ for vuelta in mi_rango(1,subredes,1):
 
 	# calcula si caben los host
 #falta agrandar
-	bits_masc,host_utiles = control_de_host(host,bits,vuelta,redes)
+	bits_masc,host_utiles = control_de_host(host,vuelta,redes)
 # host utiles que se van a mostrar en pantalla, los renombro antes de cambiarles el resultado
 	host_pantalla=host_utiles
 # hace mascara nueva tanto binario como decimal
@@ -364,7 +399,7 @@ for vuelta in mi_rango(1,subredes,1):
 						octeto4 = octeto4+host_utiles+2
 						octeto3=octeto31
 				elif col ==5:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   {4:6}'.format(masc_final[0],masc_final[1],masc_final[2],masc_final[3],host_pantalla),
+					print '{0:3}.{1:3}.{2:3}.{3:3}   {4:8}'.format(masc_final[0],masc_final[1],masc_final[2],masc_final[3],host_pantalla),
 	
 				
 		rondas=rondas+1
