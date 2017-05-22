@@ -2,11 +2,28 @@
 # -*- coding: utf-8 -*-
 
 ###################################################33
-#       calculadora de ip vlsm solo clase c y da 1 red
+#       calculadora de ip vlsm a partir e clase B o superior funciona, resto en construcción
 ###################################################33
 ################
 import os
 os.system("clear")
+
+
+###################################################33
+#             variables
+###################################################33
+
+lista_host=[]
+redes={}
+ip=[]
+mascara_inicial=[]
+host=[]
+posibles_mascaras=[0,128,192,224,240,248,252,254,255]
+rondas =0
+octeto4=0
+octeto3=0
+#ultimo_host del octeto 3
+octeto31=0
 
 ###################################################33
 #             niveles
@@ -198,6 +215,60 @@ def nueva_mascara(bits_masc,mi_rango,vuelta):
 		
 	return nueva_masc_bin,masc_final		
 	
+############################
+def si_clase_C_o_superior(col,ip,octeto4,host_utiles,masc_final):			
+	if col == 1:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4),
+	elif col ==2:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4+1),
+	elif col ==3:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4+host_utiles),
+	elif col ==4:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4+host_utiles+1),
+		octeto4 = octeto4+host_utiles+2
+	elif col ==5:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   {4:6}'.format(masc_final[0],masc_final[1],masc_final[2],masc_final[3],host_utiles),
+		
+	return octeto4,host_utiles
+
+###################################33
+def si_clase_B(col,ip,octeto4,octeto3,octeto31,host_utiles,masc_final,vuelta,host_pantalla):
+	# si los host_utiles son mas de 254 divide y suma en el octeto 3				
+
+	if host_utiles > 256 :
+		while host_utiles > 256:
+			host_utiles = host_utiles - 256
+			octeto31=octeto31+1
+		
+
+	if (octeto4+host_utiles) > 256:
+		octeto31 = octeto31+1
+		host_utiles = host_utiles-256
+	if vuelta >= 2 and col ==1:
+		octeto31=octeto31+1
+			
+	if col == 1:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto3,octeto4),
+	elif col ==2:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto3,octeto4+1),
+	elif col ==3:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto31,octeto4+host_utiles-2),
+	elif col ==4:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto31,octeto4+host_utiles-1),
+		# si octeto 4 llega a 255 suma a octeto 3 +1 y reseta octeto4
+		if (octeto4+host_utiles) >= 255:
+			octeto3 =octeto31
+			octeto3 =octeto3+1
+			octeto4 =0
+		# sino solo suma 2 a octeto4 y sigue	
+		else:
+			octeto4 = octeto4+host_utiles
+			octeto3=octeto31
+	elif col ==5:
+		print '{0:3}.{1:3}.{2:3}.{3:3}   {4:8}'.format(masc_final[0],masc_final[1],masc_final[2],masc_final[3],host_pantalla),
+
+	return octeto4,octeto3,octeto31,host_utiles
+
 ##################### datos de entrada y pequeño control
 def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes,lista_host):	
 	
@@ -299,17 +370,6 @@ def	control_de_entrada(ip,mascara_inicial,host,posibles_mascaras,redes,lista_hos
 #      codigo
 ###################################################33
 ###################################################33
-lista_host=[]
-redes={}
-ip=[]
-mascara_inicial=[]
-host=[]
-posibles_mascaras=[0,128,192,224,240,248,252,254,255]
-rondas =0
-octeto4=0
-octeto3=0
-#ultimo_host del octeto 3
-octeto31=0
 
 
 	# datos de entrada con control de errores
@@ -335,14 +395,17 @@ for vuelta in mi_rango(1,subredes,1):
 ###################################################33
 #  construcción falta clase solo esta la clase C
 ###################################################33
-	if mascara_inicial[0] < 255  :
+	if mascara_inicial[0] < 255  :  # en construcción
 		var = 0
-	elif mascara_inicial[1] < 255 :
+	elif mascara_inicial[1] < 255 : # en construcción
 		var = 1
-	elif mascara_inicial[2] < 255 :
+	elif mascara_inicial[2] < 255 :  # detecta clase b y se lo indica al for con la variable 2
 		var = 2
-	elif mascara_inicial[3] < 255 :
+		# convierte host útiles en totales para su correcto calculo despues
+		host_utiles=host_utiles+2
+	elif mascara_inicial[3] < 255 :  # detecta clase c y se lo indica al for con la variable 3
 		var = 3
+		
 ############### calcula ip
 	
 	##
@@ -356,50 +419,16 @@ for vuelta in mi_rango(1,subredes,1):
 		print '{0:3}  '.format(vuelta),
 		for col in mi_rango(1,5,1):
 		
-			if var == 3:					
-				if col == 1:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4),
-				elif col ==2:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4+1),
-				elif col ==3:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4+host_utiles),
-				elif col ==4:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],ip[2],octeto4+host_utiles+1),
-					octeto4 = octeto4+host_utiles+2
-				elif col ==5:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   {4:6}'.format(masc_final[0],masc_final[1],masc_final[2],masc_final[3],host_utiles),
-					
-			elif var == 2:
-				if col==1:
-					host_a_sumar=0
-					for i in mi_rango(1,host_utiles,1):
-						if host_a_sumar >= 256:
-							octeto31=octeto31+1
-							host_a_sumar=0
-						host_a_sumar=host_a_sumar+1
+			if var == 3:	
+				# para clase c o superior calcula redes	
+				octeto4,host_utiles = si_clase_C_o_superior(col,ip,octeto4,host_utiles,masc_final)			
 				
-									
-				if col == 1:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto3,octeto4),
-				elif col ==2:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto3,octeto4+1),
-				elif col ==3:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto31,octeto4+host_a_sumar),
-				elif col ==4:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   '.format(ip[0],ip[1],octeto31,octeto4+host_a_sumar+1),					
-					# si octeto 4 llega a 255 suma a octeto 3 +1 y reseta octeto4
-					if (octeto4+host_a_sumar+1) >= 255:
-						octeto3 =octeto31
-						octeto3 =octeto3+1
-						octeto4 =0
-					# sino solo suma 2 a octeto4 y sigue	
-					else:
-						octeto4 = octeto4+host_a_sumar+2
-						octeto3=octeto31
-				elif col ==5:
-					print '{0:3}.{1:3}.{2:3}.{3:3}   {4:8}'.format(masc_final[0],masc_final[1],masc_final[2],masc_final[3],host_pantalla),
-	
+			elif var == 2:
+				# clase b e inferior clase  c calcula redes
+				octeto4,octeto3,octeto31,host_utiles = si_clase_B(col,ip,octeto4,octeto3,octeto31,host_utiles,masc_final,vuelta,host_pantalla)
+				
 				
 		rondas=rondas+1
 			
 		print ""
+
