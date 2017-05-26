@@ -9,10 +9,10 @@ carpeta="./carpeta-script"
 for root, dirs, archivos in os.walk(carpeta):	
 	for name in archivos:
 		ruta=os.path.join(root,name)
-		os.chmod(ruta,0762)
+		os.chmod(ruta,0757)
 		
 		
 	for name in dirs:
-		ruta=os.path.join(  root,name)
-		os.chmod(ruta,0777)
+		ruta=os.path.join(root,name)
+		os.chmod(ruta,0755)
 		
