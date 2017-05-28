@@ -30,6 +30,7 @@ if var == 1:
 		 os.chmod(i,cambio)
 		 permisos=stat.S_IMODE(os.stat(i).st_mode)
 		 permisos=oct(permisos)
-		 print i,permisos
+		 #print i,permisos
+		 print '{0:50} {1:5}  '.format(i,permisos)
 else:
 	print "\nAdios"
