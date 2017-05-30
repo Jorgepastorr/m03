@@ -6,7 +6,8 @@ from datetime import datetime,date
 carpeta="./carpeta-script"
 
 
-formato = '%d-%m-%y %H:%M:%S' 
+formato = '%Y-%m-%d'
+
 # muestra ultimo acceso
 for root, dirs, archivos in os.walk(carpeta):
 	# juunta carpetas y ficheros en 1 lista
